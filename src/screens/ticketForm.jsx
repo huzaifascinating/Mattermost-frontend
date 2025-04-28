@@ -25,7 +25,7 @@ function TicketForm() {
     };
 
     try {
-      const response = await fetch('http://192.168.26.98:5004/api/Mattermost/upload', {
+      const response = await fetch('http://192.168.19.70:5004/api/Mattermost/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -51,7 +51,7 @@ function TicketForm() {
 
     const fetchTicket = async () => {
       try {
-        const res = await fetch(`http://192.168.26.98:5004/api/Mattermost/${id}`);
+        const res = await fetch(`http://192.168.19.70:5004/api/Mattermost/${id}`);
         const data = await res.json();
 
         form.setFieldsValue({
@@ -74,7 +74,6 @@ function TicketForm() {
       <div className="flex flex-col items-center">
         {!generatedTicket ? (
           <div className="w-full max-w-lg bg-white rounded-2xl shadow-md overflow-hidden border border-gray-400 relative">
-            {/* Header */}
             <div className="relative bg-gray-100 px-6 py-4 flex flex-col items-center border-b">
               <button
                 onClick={() => navigate('/')}
@@ -94,12 +93,9 @@ function TicketForm() {
               </h2>
               <p className="text-sm text-gray-500 text-center">
                 {isViewMode
-                  ? 'You are viewing an existing ticket.'
-                  : 'Fill in your details to raise a support ticket.'}
+                  ? 'You are viewing an existing ticket.' : 'Fill in your details to raise a support ticket.'}
               </p>
             </div>
-
-            {/* Form */}
             <div className="py-4 px-6">
               <Form form={form} layout="vertical" onFinish={handleSubmit} size="middle">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,7 +111,6 @@ function TicketForm() {
                     >
                       <Input placeholder="Enter topic" disabled={isViewMode} />
                     </Form.Item>
-
                     <Form.Item
                       name="location"
                       label={
@@ -128,7 +123,6 @@ function TicketForm() {
                       <Input placeholder="Enter location" disabled={isViewMode} />
                     </Form.Item>
                   </div>
-
                   <Form.Item
                     name="detail"
                     label={
@@ -141,7 +135,6 @@ function TicketForm() {
                     <TextArea rows={4} placeholder="Enter ticket details" disabled={isViewMode} />
                   </Form.Item>
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Form.Item
                     name="severity"
@@ -158,7 +151,6 @@ function TicketForm() {
                       <Select.Option value="High">High</Select.Option>
                     </Select>
                   </Form.Item>
-
                   <Form.Item
                     name="channel"
                     label={
@@ -171,8 +163,6 @@ function TicketForm() {
                     <Input placeholder="Enter communication channel" disabled={isViewMode} />
                   </Form.Item>
                 </div>
-
-                {/* Submit button only in Create mode */}
                 {!isViewMode && (
                   <Form.Item>
                     <Button
