@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TicketList from './components/ticketList';
-import TicketForm from './components/ticketForm';
+import TicketList from './screens/ticketList';
+import TicketForm from './screens/ticketForm';
 
 function App() {
   return (
