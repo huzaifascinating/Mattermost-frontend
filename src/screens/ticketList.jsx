@@ -55,7 +55,7 @@ function TicketList() {
       <div className="max-w-6xl mx-auto">
         <div className="bg-white px-6 py-4 rounded-xl shadow mb-8 sticky top-0 z-50 shadow-blue-500">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 w-full">
-            <h1 className="font-semibold text-xl">Tickets</h1>
+            <h1 className="font-semibold text-2xl">Tickets</h1>
             <Tabs
               defaultActiveKey="open"
               className='mt-5'
@@ -90,9 +90,10 @@ function TicketList() {
             />
             <Button
               type="primary"
+              size='large'
               icon={<PlusOutlined />}
               onClick={() => navigate('/create')}
-              className="rounded-full bg-blue-600 px-5 hover:bg-blue-700"
+              className="rounded-full text-xl bg-blue-600 hover:bg-blue-700"
             >
               New Ticket
             </Button>
