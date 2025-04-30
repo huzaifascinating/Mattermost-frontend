@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Typography, Button, Tag, Row, Col, Empty, Spin, Anchor } from 'antd';
-import { PlusOutlined, FileTextOutlined, ClockCircleOutlined, EyeOutlined, InboxOutlined } from '@ant-design/icons';
+import { Card, Typography, Button, Tag, Row, Col, Empty, Spin, Tabs, } from 'antd';
+import { PlusOutlined, FileTextOutlined, ClockCircleOutlined, EyeOutlined, InboxOutlined, CheckCircleOutlined, CloseCircleOutlined, AppstoreOutlined, } from '@ant-design/icons';
 
 const { Text, Paragraph } = Typography;
-const { Link } = Anchor;
 
 function TicketList() {
   const navigate = useNavigate();
@@ -54,42 +53,36 @@ function TicketList() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white px-6 py-4 rounded-xl shadow mb-8">
-          <div className="flex justify-between items-center">
-            <h1 className="font-semibold text-xl">Ticket System</h1>
-            <Anchor
-              direction="horizontal"
+        <div className="bg-white px-6 py-4 rounded-xl shadow mb-8 sticky top-0 z-50 shadow-blue-500">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 w-full">
+            <h1 className="font-semibold text-xl">Tickets</h1>
+            <Tabs
+              defaultActiveKey="open"
+              className='mt-5'
+              activeKey={filterStatus}
+              onChange={(key) => setFilterStatus(key)}
               items={[
                 {
                   key: 'open',
-                  href: '#open',
-                  title: (
-                    <span
-                      onClick={() => setFilterStatus('open')}
-                    >
-                      Open Tickets
+                  label: (
+                    <span className="flex items-center gap-1">
+                      <CheckCircleOutlined /> Open Tickets
                     </span>
                   ),
                 },
                 {
                   key: 'closed',
-                  href: '#closed',
-                  title: (
-                    <span
-                      onClick={() => setFilterStatus('closed')}
-                    >
-                      Closed Tickets
+                  label: (
+                    <span className="flex items-center gap-1">
+                      <CloseCircleOutlined /> Closed Tickets
                     </span>
                   ),
                 },
                 {
                   key: 'all',
-                  href: '#all',
-                  title: (
-                    <span
-                      onClick={() => setFilterStatus('all')}
-                    >
-                      All Tickets
+                  label: (
+                    <span className="flex items-center gap-1">
+                      <AppstoreOutlined /> All Tickets
                     </span>
                   ),
                 },
@@ -159,7 +152,7 @@ function TicketList() {
                       className="cursor-pointer hover:text-blue-400 mt-auto text-blue-500 border rounded-md border-blue-500"
                       onClick={() => navigate(`/create/${ticket.id}`)}
                     >
-                      <EyeOutlined className='mr-2' /> View Details
+                      <EyeOutlined className="mr-2" /> View Details
                     </button>
                   </div>
                 </Card>

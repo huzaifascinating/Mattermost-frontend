@@ -70,11 +70,12 @@ function TicketForm() {
   }, [id, form]);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="flex flex-col items-center">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="flex flex-col items-center w-full">
         {!generatedTicket ? (
-          <div className="w-full max-w-lg bg-white rounded-2xl shadow-md overflow-hidden border border-gray-400 relative">
-            <div className="relative bg-gray-100 px-6 py-4 flex flex-col items-center border-b">
+          <div className="w-full max-w-[795px] h-[495px] bg-white rounded-sm shadow-md overflow-hidden border border-gray-400 relative flex flex-col">
+            {/* Header */}
+            <div className="relative bg-gray-100 px-6 py-1 flex flex-col items-center border-b">
               <button
                 onClick={() => navigate('/')}
                 className="absolute left-4 top-4 text-gray-600 hover:text-black transition cursor-pointer"
@@ -87,16 +88,18 @@ function TicketForm() {
                 </div>
               )}
               <img src={formImage} alt="Demo" className="w-60 h-28 object-contain" />
-              <h2 className="text-lg font-bold text-gray-800">{isViewMode
-                  ? 'View Ticket Details'
-                  : 'Create Ticket'}
+              <h2 className="text-lg font-bold text-gray-800">
+                {isViewMode ? 'View Ticket Details' : 'Create Ticket'}
               </h2>
               <p className="text-sm text-gray-500 text-center">
                 {isViewMode
-                  ? 'You are viewing an existing ticket.' : 'Fill in your details to raise a support ticket.'}
+                  ? 'You are viewing an existing ticket.'
+                  : 'Fill in your details to raise a support ticket.'}
               </p>
             </div>
-            <div className="py-4 px-6">
+
+            {/* Scrollable Form */}
+            <div className="py-4 px-6 overflow-y-auto flex-grow">
               <Form form={form} layout="vertical" onFinish={handleSubmit} size="middle">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col">
@@ -135,6 +138,7 @@ function TicketForm() {
                     <TextArea rows={4} placeholder="Enter ticket details" disabled={isViewMode} />
                   </Form.Item>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Form.Item
                     name="severity"
@@ -163,6 +167,7 @@ function TicketForm() {
                     <Input placeholder="Enter communication channel" disabled={isViewMode} />
                   </Form.Item>
                 </div>
+
                 {!isViewMode && (
                   <Form.Item>
                     <Button
